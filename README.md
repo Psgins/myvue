@@ -1,29 +1,10 @@
 # myvue
 
-## Project setup
-```
-yarn install
-```
+this project is the my vue personal learning project. there is nothing here.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+¯\_(❛̃ ͜ʖ❛̃)\_/¯
 
-### Compiles and minifies for production
-```
-yarn build
-```
+if you still wanna give it a try.
 
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+to install use `yarn` or `yarn install`
+and to start the project use `yarn serve`
