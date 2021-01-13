@@ -1,19 +1,21 @@
 <template>
   <div>
     <h2 class="records-title">Records</h2>
-    <div v-if="records">
-      <v-row v-for="record in records" :key="record.id">
-        <v-col cols="12">
-          <RecordItem :data="record"></RecordItem>
-        </v-col>
-      </v-row>
-    </div>
-    <SplashCard v-else></SplashCard>
+    <SplashCard v-if="isLoading"></SplashCard>
+    <template v-else>
+      <div v-if="records">
+        <v-row v-for="record in records" :key="record.id">
+          <v-col cols="12">
+            <RecordItem :data="record"></RecordItem>
+          </v-col>
+        </v-row>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import SplashCard from '@/components/SplashCard.vue';
 import RecordItem from '../components/RecordItem.vue';
 
@@ -23,13 +25,35 @@ export default {
     RecordItem,
     SplashCard,
   },
+  data: function() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     ...mapGetters({
-      records: 'getRecordList',
+      records: 'records/RECORD_LIST',
     }),
   },
-  created() {
-    this.$store.dispatch('fetchRecords');
+  methods: {
+    ...mapActions({
+      fetchList: 'records/FETCH_LIST',
+      storeCleanup: 'records/CLEANUP',
+    }),
+    cleanup() {
+      this.storeCleanup('recordList');
+    },
+  },
+  created: async function() {
+    this.isLoading = true;
+    try {
+      await this.fetchList();
+    } finally {
+      this.isLoading = false;
+    }
+  },
+  destroyed() {
+    this.cleanup('recordList');
   },
 };
 </script>

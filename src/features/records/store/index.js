@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { displayDialog } from '@/utils/dialog';
 
 const initState = {
   recordList: undefined,
@@ -8,37 +9,44 @@ const initState = {
 const state = { ...initState };
 
 const getters = {
-  getRecordList: state => state.recordList,
+  RECORD_LIST: state => state.recordList,
+  VIEW_DATA: state => state.viewData,
 };
 
 const mutations = {
-  UPDATE_RECORDS(state, payload) {
+  UPDATE: (state, payload) => {
     Object.assign(state, payload);
-  },
-  CLEANUP_RECORDS(state) {
-    Object.assign(state, initState);
   },
 };
 
 const actions = {
-  async fetchRecords({ commit }) {
-    const response = await Vue.axios.get('https://api.mocki.io/v1/13fa29fb');
-    commit('UPDATE_RECORDS', {
-      recordList: response.data,
-    });
+  FETCH_LIST: async ({ commit }) => {
+    try {
+      const response = await Vue.axios.get('https://api.mocki.io/v1/13fa29fb');
+      commit('UPDATE', {
+        recordList: response.data,
+      });
+    } catch (error) {
+      displayDialog({ title: 'Something went wrong', message: 'try again later' });
+    }
   },
-  async fetchRecord({ commit }, _id) {
-    const response = await Vue.axios.get('https://api.mocki.io/v1/13fa29fb');
-    commit('UPDATE_RECORDS', {
-      viewData: response.data.find(({ id }) => id === _id),
-    });
+  FETCH_ITEM: async ({ commit }, _id) => {
+    try {
+      const response = await Vue.axios.get('https://api.mocki.io/v1/13fa29fb');
+      commit('UPDATE', {
+        viewData: response.data.find(({ id }) => id === _id),
+      });
+    } catch (error) {
+      displayDialog({ title: 'Something went wrong', message: 'try again later' });
+    }
   },
-  cleanupRecords({ commit }) {
-    commit('CLEANUP_RECORDS');
+  CLEANUP: ({ commit }, fieldName) => {
+    commit('UPDATE', fieldName ? { [fieldName]: undefined } : initState);
   },
 };
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,

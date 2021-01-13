@@ -1,20 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import core from './core';
 
 Vue.use(Vuex);
 
+const state = {};
+
+const mutations = {};
+
+const actions = {};
+
 export default new Vuex.Store({
-  state: {
-    loggedIn: false,
-  },
-  mutations: {
-    login(state, isLoggedIn) {
-      state.loggedIn = isLoggedIn;
-    },
-  },
-  actions: {
-    login({ commit }, payload) {
-      commit('login', payload);
-    },
+  state,
+  mutations,
+  actions,
+  modules: {
+    core,
   },
 });

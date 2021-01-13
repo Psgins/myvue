@@ -1,22 +1,26 @@
 <template>
   <div>
-    <router-view v-if="isLoggedIn"></router-view>
+    <CommonDialog />
+    <router-view v-if="loginInfo"></router-view>
     <Welcome v-else />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Welcome from './views/Welcome.vue';
+import CommonDialog from '@/components/CommonDialog';
 
 export default {
   name: 'App',
   components: {
     Welcome,
+    CommonDialog,
   },
   computed: {
-    isLoggedIn() {
-      return this.$store.state.loggedIn;
-    },
+    ...mapGetters({
+      loginInfo: 'core/loginInfo',
+    }),
   },
 };
 </script>

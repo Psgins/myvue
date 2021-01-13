@@ -6,11 +6,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'Welcome',
   methods: {
+    ...mapActions({
+      doLogin: 'core/login',
+    }),
     login() {
-      this.$store.dispatch('login', true);
+      this.doLogin({});
     },
   },
 };

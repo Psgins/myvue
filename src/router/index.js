@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Dashboard from '../features/dashboard/index.vue';
 import Landing from '../views/Landing.vue';
+import PageNotFound from '../views/PageNotFound.vue';
+import Dashboard from '../features/dashboard/index.vue';
 import records from './records';
+import testfails from './testfail';
 
 Vue.use(VueRouter);
 
@@ -17,6 +19,11 @@ const routes = [
         component: Dashboard,
       },
       records,
+      testfails,
+      {
+        path: '*',
+        component: PageNotFound,
+      },
     ],
   },
 ];

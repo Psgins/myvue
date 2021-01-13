@@ -3,14 +3,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import store from './store';
 
 export default {
-  created() {
-    this.$store.registerModule('records', store);
+  methods: {
+    ...mapActions({
+      cleanup: 'records/CLEANUP',
+    }),
   },
-  beforeDestroy() {
-    this.$store.dispatch('cleanupRecords');
+  created() {
+    this.$store.registerModule('records', store, { preserveState: false });
+  },
+  destroyed() {
     this.$store.unregisterModule('records');
   },
 };
