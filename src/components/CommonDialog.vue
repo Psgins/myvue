@@ -1,11 +1,11 @@
 <template>
   <v-dialog persistent :value="isDialogOpen" @input="valueChanges" @click:outside="closeDialog" max-width="520">
     <v-card>
-      <v-card-title>{{ title }}</v-card-title>
-      <v-card-text>{{ message }}</v-card-text>
+      <v-card-title>{{ $t(title) }}</v-card-title>
+      <v-card-text>{{ $t(message) }}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn plain @click="closeDialog">Close</v-btn>
+        <v-btn plain @click="closeDialog">{{ $t('common.close') }}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

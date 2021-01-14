@@ -1,16 +1,16 @@
 <template>
   <div>
     <BackButton @click="goBack" />
-    <h2 class="page-title">History Detail</h2>
+    <h2 class="page-title">{{ $t('records.view.title') }}</h2>
     <SplashCard v-if="isLoading"></SplashCard>
     <template v-else>
       <v-sheet rounded class="page-sheet" elevation="2" v-if="data">
         <v-row>
-          <v-col cols="2">Created at</v-col>
+          <v-col cols="2">{{ $t('records.view.create') }}</v-col>
           <v-col cols="10">{{ createdDateTime }}</v-col>
         </v-row>
         <v-row>
-          <v-col cols="2">Weight</v-col>
+          <v-col cols="2">{{ $t('records.view.weight') }}</v-col>
           <v-col cols="10">{{ data.weight }}</v-col>
         </v-row>
       </v-sheet>

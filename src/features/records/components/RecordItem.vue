@@ -3,7 +3,7 @@
     <v-list-item link :to="viewPath">
       <v-list-item-content>
         <v-row>
-          <v-col cols="12">Created at {{ createdDateTime }}</v-col>
+          <v-col cols="12">{{ $t('records.item.create', { createdDateTime }) }}</v-col>
         </v-row>
       </v-list-item-content>
     </v-list-item>

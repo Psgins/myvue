@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2 class="page-title">Test Fail</h2>
+    <h2 class="page-title">{{ $t('testfail.title') }}</h2>
     <SplashCard v-if="isLoading" />
-    <span v-else>After fetch</span>
+    <span v-else>{{ $t('testfail.afterFetch') }}</span>
   </div>
 </template>
 

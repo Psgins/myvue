@@ -3,12 +3,18 @@
     <v-app-bar-nav-icon class="test" @click="iconClick"></v-app-bar-nav-icon>
     <v-app-bar-title><span class="nav-title" @click="goHome">Universal History</span></v-app-bar-title>
     <v-spacer></v-spacer>
+    <LanguageButton />
   </v-app-bar>
 </template>
 
 <script>
+import LanguageButton from './LanguageButton';
+
 export default {
   name: 'AppBar',
+  components: {
+    LanguageButton,
+  },
   methods: {
     goHome() {
       this.$router.push('/', () => {});

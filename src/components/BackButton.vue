@@ -1,7 +1,7 @@
 <template>
   <v-btn plain class="root" @click="handleClick">
     <v-icon size="16">mdi-arrow-left</v-icon>
-    <span class="button-label">Back to Previous Page</span>
+    <span class="button-label">{{ $t('common.goBack') }}</span>
   </v-btn>
 </template>
 

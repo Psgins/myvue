@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="records-title">Records</h2>
+    <h2 class="records-title">{{ $t('records.manage.title') }}</h2>
     <SplashCard v-if="isLoading"></SplashCard>
     <template v-else>
       <div v-if="records">
