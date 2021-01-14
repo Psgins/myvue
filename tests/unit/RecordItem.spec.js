@@ -13,6 +13,6 @@ describe('RecordItem.vue', () => {
       },
     });
 
-    expect(wrapper.text()).toContain('Created at Dec 12, 2012');
+    expect(wrapper.text()).toContain('records.item.create');
   });
 });
