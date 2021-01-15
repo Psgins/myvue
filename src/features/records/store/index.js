@@ -22,7 +22,7 @@ const mutations = {
 const actions = {
   FETCH_LIST: async ({ commit }) => {
     try {
-      const response = await Vue.axios.get('https://api.mocki.io/v1/13fa29fb');
+      const response = await Vue.axios.get(`/v1/13fa29fb`);
       commit('UPDATE', {
         recordList: response.data,
       });
@@ -32,7 +32,7 @@ const actions = {
   },
   FETCH_ITEM: async ({ commit }, _id) => {
     try {
-      const response = await Vue.axios.get('https://api.mocki.io/v1/13fa29fb');
+      const response = await Vue.axios.get(`/v1/13fa29fb`);
       commit('UPDATE', {
         viewData: response.data.find(({ id }) => id === _id),
       });
